@@ -4,8 +4,13 @@ const app = express();
 const routes = require('./routes');
 const port = 8080
 const morgan = require('morgan');
-var path = require('path');
+const path = require('path');
 const bodyParser = require('body-parser');
+const page = require('./models/').Page;
+const user = require('./models/').User;
+
+page.sync();
+user.sync();
 
 var server = app.listen(port);
 console.log('Listening on  ' + port);
