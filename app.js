@@ -6,14 +6,14 @@ const port = 8080
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
-const page = require('./models/').Page;
-const user = require('./models/').User;
+const models = require('./models');
 
-page.sync();
-user.sync();
-
-var server = app.listen(port);
-console.log('Listening on  ' + port);
+models.db.sync({force: true})  // {force: true}  == drops tables and recreates them.
+.then(function () {
+  var server = app.listen(port);
+  console.log('Listening on  ' + port);
+})
+.catch(console.error);
 
 app.engine('html', nunjucks.render); // how to render html templates
 app.set('view engine', 'html'); // what file extension do our templates have

@@ -4,6 +4,9 @@
   <h3>Pages</h3>
   <hr>
   <ul class="list-unstyled">
+    {%for variablepagename in page%}
+    <li><a href="{{variablepagename.url}}">{{variablepagename.title}}</a></li>
+    {%endfor%}
     <!-- PLACEHOLDER LIST OF PAGES -->
   </ul>
 {% endblock %}
